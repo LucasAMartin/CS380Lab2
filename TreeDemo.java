@@ -16,23 +16,37 @@ class BinarySearchTree{
 
 
     /*
-    recursive insert method
-    */
-    public Node insert(Node root, int value){
-        //base case
+      inserts a node into the tree
+      */
+    public void insert(int value){
+        //tree is empty
         if(root == null){
             root = new Node(value);
-            return root;
-        }
-
-        //recursive step
-        if(value < root.value){
-            root.left = insert(root.left, value);
+            return;
         }else{
-            root.right = insert(root.right, value);
-        }
+            Node current = root;
+            Node parent = null;
 
-        return root;
+            while(true){
+                parent = current;
+
+                if(value < current.value){
+                    current = current.left;
+                    if(current == null){
+                        parent.left = new Node(value);
+                        return;
+                    }
+                }else{
+                    current = current.right;
+                    if(current == null){
+                        parent.right = new Node(value);
+                        return;
+                    }
+                }
+
+            }//closing while
+
+        }//closing main if-else
     }
 
 
@@ -62,11 +76,11 @@ class BinarySearchTree{
             return;
 
         // traverse the left child
-        preOrderTraversal(root.left);
+        inOrderTraversal(root.left);
         // print the node
         System.out.print(root.value + "->");
         // traverse the right child
-        preOrderTraversal(root.right);
+        inOrderTraversal(root.right);
     }
 
 
@@ -79,9 +93,9 @@ class BinarySearchTree{
             return;
 
         // traverse the left child
-        preOrderTraversal(root.left);
+        postOrderTraversal(root.left);
         // traverse the right child
-        preOrderTraversal(root.right);
+        postOrderTraversal(root.right);
         // print the node
         System.out.print(root.value + "->");
     }
