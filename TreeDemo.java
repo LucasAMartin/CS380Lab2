@@ -44,7 +44,7 @@ class BinarySearchTree{
         if (root == null)
             return;
 
-        // traverse the root node
+        // print the node
         System.out.print(root.value + "->");
         // traverse the left child
         preOrderTraversal(root.left);
@@ -58,7 +58,15 @@ class BinarySearchTree{
     in-order traversal
     */
     public void inOrderTraversal(Node root){
-        //implement me
+        if (root == null)
+            return;
+
+        // traverse the left child
+        preOrderTraversal(root.left);
+        // print the node
+        System.out.print(root.value + "->");
+        // traverse the right child
+        preOrderTraversal(root.right);
     }
 
 
